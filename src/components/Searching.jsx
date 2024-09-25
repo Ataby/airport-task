@@ -5,9 +5,9 @@ import Calender from "../assets/icons/calender.svg";
 import { MyContext } from "../App";
 
 const Searching = () => {
-  const { setFilters,setShowFlight } =
-    useContext(MyContext);
+  const { setFilters } = useContext(MyContext);
   const [arriveDeparture, setarriveDeparture] = useState(null);
+  //useEffect(() => {}, [arriveDeparture]);
 
   const updateFilter = (filterType, value) => {
     setFilters((prevFilters) => ({
@@ -19,21 +19,22 @@ const Searching = () => {
   const setArrive = () => {
     setarriveDeparture("arrive");
     updateFilter("flightDirection", "A");
+    updateFilter("route", "");
   };
   const setDeparture = () => {
     setarriveDeparture("departure");
-    updateFilter("flightDirection", "D");
+    updateFilter("route", "");
   };
 
-  const handleShowFlight = () => {
-    setarriveDeparture((prev) => !prev);
-  };
+  //   const handleShowFlight = () => {
+  //       setShowFlight((prev) => !prev);
+  //   };
   return (
-    <div className="border-2 border-red-300">
-      <div className="flex justify-between p-2 my-2">
+    <div className="border-2 border-red-300 rounded-xl p-4">
+      <div className="flex justify-between p-2 ">
         <div className="flex gap-1 items-center ">
           <img src={PLaneFilled} className="rotate-90 h-6" alt="" />
-          <p className="text-lg text-gray-700 font-semibold border-2 ">
+          <p className="text-lg text-gray-700 font-semibold">
             BOOK YOUR FLIGHT
           </p>
         </div>
@@ -60,7 +61,7 @@ const Searching = () => {
           </button>
         </div>
       </div>
-      <div className="flex my-4">
+      <div className="flex my-4 ">
         <div className="flex border gap-2 border-gray-400 w-1/4 p-1 rounded-l-full">
           <img src={Plane} alt="" className="rotate-45 ml-4" />
           <input
@@ -98,9 +99,9 @@ const Searching = () => {
           />
         </div>
       </div>
-        <button onClick={setShowFlight(true)} className=" bg-purple-700 p-2 text-white mt-3 rounded-md">
-          Show Flights
-        </button>
+      <button className=" bg-purple-700 p-2 text-white mt-3 rounded-md">
+        Show Flights
+      </button>
     </div>
   );
 };
