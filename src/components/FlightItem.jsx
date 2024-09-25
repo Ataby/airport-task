@@ -4,10 +4,12 @@ import DoubleRight from "../assets/icons/doubleRight.svg"
 import Plane from "../assets/icons/plane.svg";
 
 const FlightItem = () => {
-  const { filters, filteredFlights,setUserFlights } = useContext(MyContext);
+  const { filters, filteredFlights,setUserFlights,userFlights } = useContext(MyContext);
 
   const handleAddFlight = (flight) => {
+    console.log(userFlights)
     setUserFlights((prevFlights) => [...prevFlights, flight]);
+    alert("Added succesfully");
   };
   //console.log(filteredFlights.flights);
   return (
@@ -17,7 +19,7 @@ const FlightItem = () => {
           <div key={flight.flightName} className="flex p-4 items-center  justify-between border-2 rounded-lg bg-white m-8 hover:shadow-xl transition-transform duration-300 hover:scale-105">
              
               <div className="flex flex-col items-center">
-                {filters.flightDirection == "A" ? (
+                {flight.flightDirection == "A" ? (
                   <p className="text-xl font-semibold">Amsterdam - {flight.route.destinations}</p>
                 ) : (
                   <p>{flight.route.destinations} - Amsterdam</p>
@@ -26,7 +28,7 @@ const FlightItem = () => {
                 <p className="text-xl font-semibold">{flight.scheduleTime}</p>
                 <p className="flex">
                   Airport :
-                  {filters.flightDirection == "A" ? (
+                  {flight.flightDirection == "A" ? (
                     <p>SCH</p>
                   ) : (
                     <p>{flight.route.destinations} </p>
@@ -49,12 +51,12 @@ const FlightItem = () => {
                   <p className="text-xl font-semibold">{flight?.estimatedLandingTime?.substring(11,19) }</p>
                   <p className="flex">
                     Airport :
-                    {filters.flightDirection == "A"
+                    {flight.flightDirection == "A"
                      ? flight.route.destinations
                       : "SCH"}
                   </p>
                   <p className="text-xl font-semibold text-purple-700">Price: $236</p>
-                  <button onClick={(flight)=>handleAddFlight(flight)} className="bg-purple-700 p-2 rounded-md text-white cursor-pointer">Book Flight</button>
+                  <button onClick={()=>handleAddFlight(flight)} className="bg-purple-700 p-2 rounded-md text-white cursor-pointer">Book Flight</button>
             </div>
           </div>
         );
