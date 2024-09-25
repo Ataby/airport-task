@@ -5,7 +5,7 @@ import Calender from "../assets/icons/calender.svg";
 import { MyContext } from "../App";
 
 const Searching = () => {
-  const { setFilters } = useContext(MyContext);
+  const { setFilters,setShowFlight ,showFlight,userFlight} = useContext(MyContext);
   const [arriveDeparture, setarriveDeparture] = useState(null);
   //useEffect(() => {}, [arriveDeparture]);
 
@@ -26,13 +26,16 @@ const Searching = () => {
     updateFilter("route", "");
   };
 
-  //   const handleShowFlight = () => {
-  //       setShowFlight((prev) => !prev);
-  //   };
+     const handleShowFlight = () => {
+         setShowFlight((prev) => !prev);
+         console.log(showFlight)
+         console.log(userFlight)
+
+     };
   return (
-    <div className="border-2 border-red-300 rounded-xl p-4">
-      <div className="flex justify-between p-2 ">
-        <div className="flex gap-1 items-center ">
+    <div className=" bg-white rounded-xl border-4 p-4">
+      <div className="flex justify-between  p-2 ">
+        <div className="flex gap-1 items-center  ">
           <img src={PLaneFilled} className="rotate-90 h-6" alt="" />
           <p className="text-lg text-gray-700 font-semibold">
             BOOK YOUR FLIGHT
@@ -99,8 +102,8 @@ const Searching = () => {
           />
         </div>
       </div>
-      <button className=" bg-purple-700 p-2 text-white mt-3 rounded-md">
-        Show Flights
+      <button className=" bg-purple-700 p-2 text-white mt-3 rounded-md" onClick={handleShowFlight}>
+        {!showFlight ? "Show My Flights" : "Close My Flights"}
       </button>
     </div>
   );
