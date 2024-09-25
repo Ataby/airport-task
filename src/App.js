@@ -6,6 +6,7 @@ import Sorting from "./components/Sorting";
 import Images from "./components/Images";
 import FlightItem from "./components/FlightItem";
 import useDebounce from "./custom hook/useDebounce";
+import MyFlights from "./components/MyFlights";
 
 export const MyContext = createContext();
 
@@ -97,7 +98,7 @@ function App() {
         setFilters,
         showFlight,
         setShowFlight,
-        setUserFlights
+        setUserFlights,userFlights
       }}
     >
       <div>
@@ -106,9 +107,18 @@ function App() {
           <div className="flex">
             <div className="w-3/4">
               <Searching />
-              <div className="flex">
-                <FlightItem />
-                <Sorting />
+              <div className="flex bg-[#f3f2f6]">
+                {showFlight ? (
+                  <>
+                  <MyFlights/>
+                  </>
+                  
+                ) : (
+                  <>
+                  <FlightItem />
+                  <Sorting />
+                  </>
+                )}
               </div>
             </div>
             <Images />
